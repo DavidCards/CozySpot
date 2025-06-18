@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/textViewMessageContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mensagem"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewMessageFromTo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="De: Eu  Para: Fulano"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:paddingTop="2dp"/>
+
+    <TextView
+        android:id="@+id/textViewMessageTimestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data: 2024-01-01 12:00"
+        android:textSize="12sp"
+        android:textColor="#888888"
+        android:paddingTop="2dp"/>
+
+    <TextView
+        android:id="@+id/textViewMessageHouseTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Casa: Título da Casa"
+        android:textSize="13sp"
+        android:textColor="#888888"
+        android:paddingTop="2dp"
+        android:visibility="gone"/>
+
+</LinearLayout>

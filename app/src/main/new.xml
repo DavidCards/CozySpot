@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal" android:padding="8dp">
+
+    <ImageView android:id="@+id/imageViewHouseItem" android:layout_width="100dp"
+        android:layout_height="100dp" android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_marginStart="8dp" android:layout_weight="1" android:orientation="vertical">
+
+        <TextView android:id="@+id/textViewTitleItem" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="18sp" android:textStyle="bold"
+            tools:text="Cozy Cottage by the Lake" />
+
+        <TextView android:id="@+id/textViewLocationItem" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="14sp"
+            tools:text="Lakeview, Serenity County" />
+
+        <TextView android:id="@+id/textViewGuestsItem" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="14sp" tools:text="Guests: 4" />
+
+        <TextView android:id="@+id/textViewPriceItem" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textColor="@android:color/holo_green_dark" android:textSize="16sp"
+            android:textStyle="bold" tools:text="$120.00/night" />
+    </LinearLayout>
+
+</LinearLayout>

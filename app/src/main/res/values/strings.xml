@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CozySpot</string>
+    <string name="navigation_drawer_open">Abrir menu</string>
+    <string name="navigation_drawer_close">Fechar menu</string>
+    <string name="location_button_description">Access my location</string>
+    <string name="dialog_location_permission">We need your location to center the map. Please grant location permission.</string>
+    <string name="dialog_approximate_location">Your location will be approximate. To enable precise location, go to app settings and grant Fine Location permission.</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_settings">Go to Settings</string>
+</resources>

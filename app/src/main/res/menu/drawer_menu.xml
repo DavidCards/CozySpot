@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="Página Inicial"
+        android:icon="@android:drawable/ic_menu_compass" />
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Perfil"
+        android:icon="@android:drawable/ic_menu_myplaces" />
+    <item
+        android:id="@+id/menu_favorites"
+        android:title="Favoritos"
+        android:icon="@android:drawable/ic_menu_view" />
+    <item
+        android:id="@+id/menu_messages"
+        android:title="Mensagens"
+        android:icon="@android:drawable/ic_dialog_email" />
+    <item
+        android:id="@+id/menu_bookings"
+        android:title="Minhas Reservas"
+        android:icon="@android:drawable/ic_menu_agenda" />
+</menu>
