@@ -8,23 +8,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#C1FDB6"
-        android:paddingTop="15dp"
-        android:paddingBottom="10dp"
-        android:text="CozySpot"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="287dp"
         android:layout_height="48dp"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="130dp"
         android:ems="10"
         android:hint="Localização"
         android:inputType="text"
@@ -34,41 +23,42 @@
         android:layout_width="287dp"
         android:layout_height="48dp"
         android:layout_marginStart="65dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/editTextStartDate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="Data início"
-            android:focusable="false"
-            android:inputType="none"
             android:background="@android:drawable/edit_text"
+            android:focusable="false"
+            android:hint="Data início"
+            android:inputType="none"
             android:padding="8dp"
-            android:textSize="16sp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:text=" a "
-            android:textSize="18sp"
-            android:gravity="center" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/editTextEndDate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="Data fim"
-            android:focusable="false"
-            android:inputType="none"
             android:background="@android:drawable/edit_text"
+            android:focusable="false"
+            android:hint="Data fim"
+            android:inputType="none"
             android:padding="8dp"
-            android:textSize="16sp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <EditText
@@ -76,6 +66,7 @@
         android:layout_width="287dp"
         android:layout_height="48dp"
         android:layout_marginStart="65dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Numero de hospedes"
         android:inputType="number"
@@ -112,14 +103,25 @@
         android:textSize="22sp"
         android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTopRated"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="291dp"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp"
-        android:scrollbars="horizontal" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTopRated"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:scrollbars="horizontal" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
