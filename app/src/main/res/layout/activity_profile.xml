@@ -17,20 +17,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="CozySpot" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
             android:background="#C1FDB6"
-            android:paddingTop="15dp"
-            android:paddingBottom="10dp"
-            android:text="CozySpot"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="CozySpot"
+            app:titleTextColor="#000000" />
 
         <ImageView
             android:id="@+id/imageView2"

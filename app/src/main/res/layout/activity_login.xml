@@ -58,6 +58,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
+            android:backgroundTint="#C1FDB6"
+            android:textColor="#000000"
             android:text="Login" />
 
         <TextView
@@ -68,7 +70,7 @@
             android:layout_marginBottom="10dp"
             android:text="Ainda não está registado no CozySpot? Registe-se já :)"
             android:textAlignment="center"
-            android:textColor="#2222EE"
+            android:textColor="#00ACFF"
             android:textSize="14sp" />
     </LinearLayout>
 

@@ -17,11 +17,8 @@
             android:layout_height="wrap_content"
             android:background="#C1FDB6"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="CozySpot" />
-
-        <!-- Main content from activity_main.xml starts here -->
-
-        <!-- Main content from activity_main.xml ends here -->
+            app:title="CozySpot"
+            app:titleTextColor="#000000" />
 
     </LinearLayout>
 

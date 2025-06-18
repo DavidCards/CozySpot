@@ -16,9 +16,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
+            android:background="#C1FDB6"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="CozySpot" />
+            app:title="CozySpot"
+            app:titleTextColor="#000000" />
 
         <TextView
             android:id="@+id/textViewLocation"
@@ -26,33 +27,33 @@
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="Localização"
-            android:textAlignment="center"
-            android:textSize="18sp"
             android:background="#EEEEEE"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="Localização"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewDate"
             android:layout_width="287dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
-            android:text="Data"
-            android:textAlignment="center"
-            android:textSize="18sp"
             android:background="#EEEEEE"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="Data"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewGuests"
             android:layout_width="287dp"
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
-            android:text="Número de hóspedes"
-            android:textAlignment="center"
-            android:textSize="18sp"
             android:background="#EEEEEE"
-            android:gravity="center_vertical|center_horizontal" />
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="Número de hóspedes"
+            android:textAlignment="center"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,6 +68,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
+                android:backgroundTint="#C1FDB6"
+                android:textColor="#000000"
                 android:text="Preço " />
 
             <Button
@@ -76,6 +79,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
+                android:backgroundTint="#C1FDB6"
+                android:textColor="#000000"
                 android:text="Ranking" />
         </LinearLayout>
 
@@ -92,11 +97,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHouses"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:clipToPadding="false"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:clipToPadding="false"
             android:scrollbars="vertical" />
 
     </LinearLayout>

@@ -13,10 +13,12 @@
             android:id="@+id/buttonBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Voltar"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#C1FDB6"
+            android:text="Voltar"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/textViewBookingTitle"
