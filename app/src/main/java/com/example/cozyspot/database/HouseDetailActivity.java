@@ -36,8 +36,8 @@ import org.maplibre.android.camera.CameraPosition;
 import org.maplibre.android.geometry.LatLng;
 import org.maplibre.android.maps.MapView;
 import org.maplibre.android.maps.MapLibreMap;
-import org.maplibre.android.annotations.MarkerOptions;
-import org.maplibre.android.annotations.IconFactory;
+import org.maplibre.android.plugins.annotation.SymbolManager;
+import org.maplibre.android.plugins.annotation.SymbolOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -97,25 +97,32 @@ public class HouseDetailActivity extends AppCompatActivity {
                     return;
                 }
 
+                // --- MAPLIBRE LAB-COMPLIANT LOGIC ---
+                String styleJson = loadStyleFromAssets();
                 mapView.getMapAsync(map -> {
                     mapLibreMap = map;
-                    double lat = house.getLatitude();
-                    double lon = house.getLongitude();
-                    houseLat = lat;
-                    houseLon = lon;
-                    mapLibreMap.setStyle("asset://style.json", style -> {
-                        IconFactory iconFactory = IconFactory.getInstance(this);
-                        mapLibreMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(lat, lon))
-                                .title(house.getTitle())
-                                .icon(iconFactory.defaultMarker()));
+                    map.setStyle(new org.maplibre.android.maps.Style.Builder().fromJson(styleJson), style -> {
+                        // Add marker icon to style (lab style)
+                        style.addImage("marker", androidx.core.content.res.ResourcesCompat.getDrawable(getResources(), R.drawable.baseline_location_on_24, getTheme()));
+                        // Use SymbolManager for marker (lab style)
+                        org.maplibre.android.plugins.annotation.SymbolManager symbolManager = new org.maplibre.android.plugins.annotation.SymbolManager(mapView, mapLibreMap, style);
+                        symbolManager.setIconAllowOverlap(true);
+                        symbolManager.setIconIgnorePlacement(true);
+                        double lat = house.getLatitude();
+                        double lon = house.getLongitude();
+                        symbolManager.create(new org.maplibre.android.plugins.annotation.SymbolOptions()
+                                .withLatLng(new org.maplibre.android.geometry.LatLng(lat, lon))
+                                .withIconImage("marker")
+                                .withIconSize(1.3f)
+                        );
+                        mapLibreMap.setCameraPosition(new org.maplibre.android.camera.CameraPosition.Builder()
+                                .target(new org.maplibre.android.geometry.LatLng(lat, lon))
+                                .zoom(15.0)
+                                .build());
                     });
-                    CameraPosition position = new CameraPosition.Builder()
-                            .target(new LatLng(lat, lon))
-                            .zoom(15.0)
-                            .build();
-                    mapLibreMap.setCameraPosition(position);
                 });
+                // --- END MAPLIBRE LAB-COMPLIANT LOGIC ---
+
                 centerLocationButton.setOnClickListener(v -> {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         centerMapOnUserLocation();
@@ -326,5 +333,19 @@ public class HouseDetailActivity extends AppCompatActivity {
         calendar.get(java.util.Calendar.YEAR),
         calendar.get(java.util.Calendar.MONTH),
         calendar.get(java.util.Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private String loadStyleFromAssets() {
+        try {
+            java.io.InputStream is = getApplicationContext().getAssets().open("style.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            return new String(buffer, "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
