@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextEmail, editTextPassword;
     private Button buttonLogin;
     private ExecutorService executor = Executors.newSingleThreadExecutor();
+    private boolean firstLoginAttempt = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,7 +76,17 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Email ou senha inválidos", Toast.LENGTH_SHORT).show();
+                            if (firstLoginAttempt) {
+                                firstLoginAttempt = false;
+                                Toast.makeText(LoginActivity.this, "Aguarde um momento... preparando a base de dados", Toast.LENGTH_SHORT).show();
+                                buttonLogin.setEnabled(false);
+                                buttonLogin.postDelayed(() -> {
+                                    buttonLogin.setEnabled(true);
+                                    buttonLogin.performClick();
+                                }, 2000);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Email ou senha inválidos", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                 });

@@ -216,6 +216,17 @@ public class SearchResult extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
     public int getUserId() {
         return userId;
     }

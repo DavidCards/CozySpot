@@ -65,16 +65,25 @@ public class MessagesActivity extends AppCompatActivity {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-            List<Message> messagesToShow = new ArrayList<>();
+            List<Message> messagesToShow = db.messageDao().getMessagesForUser(userId);
+            // Ordenar por data decrescente (mais recentes primeiro)
+            messagesToShow.sort((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()));
             Map<Integer, String> userNamesCache = new HashMap<>();
             allUsersList = db.userDao().getAll();
             for (com.example.cozyspot.database.Classes.User u : allUsersList) {
                 userNamesCache.put(u.getId(), u.getUserName());
             }
+            // Buscar apenas usuários com quem já trocou mensagens
+            List<Integer> receivers = db.messageDao().getReceiversForUser(userId);
+            List<Integer> senders = db.messageDao().getSendersForUser(userId);
+            java.util.Set<Integer> contactIds = new java.util.HashSet<>();
+            contactIds.addAll(receivers);
+            contactIds.addAll(senders);
+            contactIds.remove(userId); // nunca mostrar o próprio user
             List<String> userNamesForSpinner = new ArrayList<>();
             userIdsForSpinner.clear();
             for (com.example.cozyspot.database.Classes.User u : allUsersList) {
-                if (u.getId() != userId && !userNamesForSpinner.contains(u.getUserName())) {
+                if (contactIds.contains(u.getId())) {
                     userNamesForSpinner.add(u.getUserName());
                     userIdsForSpinner.add(u.getId());
                 }
@@ -84,9 +93,6 @@ public class MessagesActivity extends AppCompatActivity {
                 adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerUsers.setAdapter(adapterSpinner);
             });
-            for (Message m : db.messageDao().getAll()) {
-                if (m.getSenderId() == userId || m.getReceiverId() == userId) messagesToShow.add(m);
-            }
             runOnUiThread(() -> {
                 MessagesSimpleAdapter adapter = new MessagesSimpleAdapter(MessagesActivity.this, messagesToShow, userId, userNamesCache);
                 adapter.setOnMessageClickListener(message -> {
@@ -119,10 +125,24 @@ public class MessagesActivity extends AppCompatActivity {
             Message replyMessage = new Message(userIdReply, receiverId, reply, timestamp);
             executorService.execute(() -> {
                 db.messageDao().insert(replyMessage);
+                // Atualizar a lista imediatamente após o envio
+                List<Message> messagesToShow = db.messageDao().getMessagesForUser(userIdReply);
+                messagesToShow.sort((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()));
+                Map<Integer, String> userNamesCache = new HashMap<>();
+                List<com.example.cozyspot.database.Classes.User> allUsers = db.userDao().getAll();
+                for (com.example.cozyspot.database.Classes.User u : allUsers) {
+                    userNamesCache.put(u.getId(), u.getUserName());
+                }
                 runOnUiThread(() -> {
                     editTextReply.setText("");
                     selectedMessageSenderId = -1;
                     Toast.makeText(this, "Mensagem enviada!", Toast.LENGTH_SHORT).show();
+                    MessagesSimpleAdapter adapter = new MessagesSimpleAdapter(MessagesActivity.this, messagesToShow, userIdReply, userNamesCache);
+                    adapter.setOnMessageClickListener(message -> {
+                        selectedMessageSenderId = message.getSenderId();
+                        editTextReply.setHint("Responder para " + userNamesCache.getOrDefault(selectedMessageSenderId, ""));
+                    });
+                    recyclerView.setAdapter(adapter);
                 });
             });
         });
@@ -157,5 +177,10 @@ public class MessagesActivity extends AppCompatActivity {
             drawerLayout.closeDrawers();
             return true;
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,12 +1,11 @@
 package com.example.cozyspot.database;
 
-import static android.content.Intent.getIntent;
-
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,8 +17,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.cozyspot.R;
@@ -30,6 +31,7 @@ import com.example.cozyspot.database.dao.FavoriteDao;
 import com.example.cozyspot.database.dao.MessageDao;
 import com.example.cozyspot.database.creator.AppDatabase;
 import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import org.maplibre.android.MapLibre;
 import org.maplibre.android.camera.CameraPosition;
@@ -50,12 +52,40 @@ public class HouseDetailActivity extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
     private MapLibreMap mapLibreMap;
     private double houseLat, houseLon;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MapLibre.getInstance(this);
         setContentView(R.layout.activity_search_details);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.menu_home) {
+                startActivity(new Intent(this, MainActivity.class).putExtra("USER_ID", getIntent().getIntExtra("USER_ID", -1)));
+            } else if (id == R.id.menu_profile) {
+                startActivity(new Intent(this, Profile.class).putExtra("USER_ID", getIntent().getIntExtra("USER_ID", -1)));
+            } else if (id == R.id.menu_favorites) {
+                startActivity(new Intent(this, FavoritesActivity.class).putExtra("USER_ID", getIntent().getIntExtra("USER_ID", -1)));
+            } else if (id == R.id.menu_messages) {
+                startActivity(new Intent(this, MessagesActivity.class).putExtra("USER_ID", getIntent().getIntExtra("USER_ID", -1)));
+            } else if (id == R.id.menu_bookings) {
+                startActivity(new Intent(this, MyBookingsActivity.class).putExtra("USER_ID", getIntent().getIntExtra("USER_ID", -1)));
+            }
+            drawerLayout.closeDrawers();
+            return true;
+        });
+
+        View content = findViewById(R.id.main_content);
 
         int houseId = getIntent().getIntExtra("HOUSE_ID", -1);
         if (houseId == -1) {
@@ -76,35 +106,32 @@ public class HouseDetailActivity extends AppCompatActivity {
                 return;
             }
             runOnUiThread(() -> {
-                ImageView imageView = findViewById(R.id.imageView7);
-                TextView title = findViewById(R.id.textView18);
-                TextView location = findViewById(R.id.textView21);
-                TextView description = findViewById(R.id.textView23);
-                TextView price = findViewById(R.id.textView22);
-                TextView rating = findViewById(R.id.textViewRatingDetail);
-                ImageButton buttonFavorite = findViewById(R.id.buttonFavorite);
-                RatingBar ratingBar = findViewById(R.id.ratingBar);
-                EditText editTextDuvida = findViewById(R.id.editTextText3);
-                Button buttonEnviar = findViewById(R.id.button3);
-                Button buttonBook = findViewById(R.id.buttonBook);
-                EditText editTextStartDate = findViewById(R.id.editTextStartDate);
-                EditText editTextEndDate = findViewById(R.id.editTextEndDate);
-                MapView mapView = findViewById(R.id.mapView);
-                ImageButton centerLocationButton = findViewById(R.id.centerLocationButton);
+                ImageView imageView = content.findViewById(R.id.imageView7);
+                TextView title = content.findViewById(R.id.textView18);
+                TextView location = content.findViewById(R.id.textView21);
+                TextView description = content.findViewById(R.id.textView23);
+                TextView price = content.findViewById(R.id.textView22);
+                ImageButton buttonFavorite = content.findViewById(R.id.buttonFavorite);
+                RatingBar ratingBar = content.findViewById(R.id.ratingBar);
+                EditText editTextDuvida = content.findViewById(R.id.editTextText3);
+                Button buttonEnviar = content.findViewById(R.id.button3);
+                Button buttonBook = content.findViewById(R.id.buttonBook);
+                EditText editTextStartDate = content.findViewById(R.id.editTextStartDate);
+                EditText editTextEndDate = content.findViewById(R.id.editTextEndDate);
+                MapView mapView = content.findViewById(R.id.mapView);
+                ImageButton centerLocationButton = content.findViewById(R.id.centerLocationButton);
+                TextView hostName = content.findViewById(R.id.textViewHostName);
 
-                if (imageView == null || title == null || location == null || description == null || price == null || rating == null || buttonFavorite == null || ratingBar == null || editTextDuvida == null || buttonEnviar == null || buttonBook == null || editTextStartDate == null || editTextEndDate == null || mapView == null || centerLocationButton == null) {
+                if (imageView == null || title == null || location == null || description == null || price == null || buttonFavorite == null || ratingBar == null || editTextDuvida == null || buttonEnviar == null || buttonBook == null || editTextStartDate == null || editTextEndDate == null || mapView == null || centerLocationButton == null) {
                     Toast.makeText(HouseDetailActivity.this, "Erro: view não encontrada no layout.", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                // --- MAPLIBRE LAB-COMPLIANT LOGIC ---
                 String styleJson = loadStyleFromAssets();
                 mapView.getMapAsync(map -> {
                     mapLibreMap = map;
                     map.setStyle(new org.maplibre.android.maps.Style.Builder().fromJson(styleJson), style -> {
-                        // Add marker icon to style (lab style)
                         style.addImage("marker", androidx.core.content.res.ResourcesCompat.getDrawable(getResources(), R.drawable.baseline_location_on_24, getTheme()));
-                        // Use SymbolManager for marker (lab style)
                         org.maplibre.android.plugins.annotation.SymbolManager symbolManager = new org.maplibre.android.plugins.annotation.SymbolManager(mapView, mapLibreMap, style);
                         symbolManager.setIconAllowOverlap(true);
                         symbolManager.setIconIgnorePlacement(true);
@@ -121,7 +148,6 @@ public class HouseDetailActivity extends AppCompatActivity {
                                 .build());
                     });
                 });
-                // --- END MAPLIBRE LAB-COMPLIANT LOGIC ---
 
                 centerLocationButton.setOnClickListener(v -> {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -143,20 +169,15 @@ public class HouseDetailActivity extends AppCompatActivity {
                         } else {
                             db.favoriteDao().insert(new com.example.cozyspot.database.Classes.Favorite(userId, houseId));
                         }
-                        // Recheca o estado real após a operação
                         boolean isNowFavorite = db.favoriteDao().exists(userId, houseId) > 0;
                         runOnUiThread(() -> buttonFavorite.setImageResource(isNowFavorite ? R.drawable.ic_heart : R.drawable.ic_heart_outline));
                     });
                 });
 
-                rating.setText("Avaliação: .../5");
                 executor.execute(() -> {
                     float avgRating = db.reviewDao().getAverageRatingForHouse(houseId);
                     int ratingInt = Math.round(avgRating);
-                    runOnUiThread(() -> {
-                        rating.setText("Avaliação: " + ratingInt + "/5");
-                        ratingBar.setRating(avgRating);
-                    });
+                    runOnUiThread(() -> ratingBar.setRating(avgRating));
                 });
                 ratingBar.setOnRatingBarChangeListener((bar, value, fromUser) -> {
                     if (fromUser) {
@@ -171,7 +192,6 @@ public class HouseDetailActivity extends AppCompatActivity {
                             float avgRating = db.reviewDao().getAverageRatingForHouse(houseId);
                             int ratingInt = Math.round(avgRating);
                             runOnUiThread(() -> {
-                                rating.setText("Avaliação: " + ratingInt + "/5");
                                 ratingBar.setRating(avgRating);
                             });
                         });
@@ -182,7 +202,13 @@ public class HouseDetailActivity extends AppCompatActivity {
                 description.setText(house.getDescription() + "\n\nEsta acomodação oferece uma experiência única, com todas as comodidades para uma estadia confortável, incluindo Wi-Fi rápido, cozinha equipada, proximidade a pontos turísticos e transporte público. Ideal para famílias, casais ou viajantes a trabalho. Aproveite o melhor da cidade com conforto e segurança!");
                 price.setText(String.format("Preço por noite: %.2f€", house.getPricePerNight()));
 
-                // Glide image loading with null/empty check
+                // Buscar nome do host
+                executor.execute(() -> {
+                    com.example.cozyspot.database.Classes.User host = db.userDao().findById(house.getOwnerId());
+                    String hostDisplay = host != null ? host.getUserName() : "(desconhecido)";
+                    runOnUiThread(() -> hostName.setText("Host: " + hostDisplay));
+                });
+
                 String imageUrl = house.getImageUrl();
                 if (imageView != null && imageUrl != null && !imageUrl.isEmpty()) {
                     Glide.with(this)
@@ -283,44 +309,51 @@ public class HouseDetailActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        MapView mapView = findViewById(R.id.mapView);
+        View content = findViewById(R.id.main_content);
+        MapView mapView = content.findViewById(R.id.mapView);
         mapView.onStart();
     }
     @Override
     protected void onResume() {
         super.onResume();
-        MapView mapView = findViewById(R.id.mapView);
+        View content = findViewById(R.id.main_content);
+        MapView mapView = content.findViewById(R.id.mapView);
         mapView.onResume();
     }
     @Override
     protected void onPause() {
         super.onPause();
-        MapView mapView = findViewById(R.id.mapView);
+        View content = findViewById(R.id.main_content);
+        MapView mapView = content.findViewById(R.id.mapView);
         mapView.onPause();
     }
     @Override
     protected void onStop() {
         super.onStop();
-        MapView mapView = findViewById(R.id.mapView);
+        View content = findViewById(R.id.main_content);
+        MapView mapView = content.findViewById(R.id.mapView);
         mapView.onStop();
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MapView mapView = findViewById(R.id.mapView);
+        View content = findViewById(R.id.main_content);
+        MapView mapView = content.findViewById(R.id.mapView);
         mapView.onDestroy();
         executor.shutdown();
     }
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        MapView mapView = findViewById(R.id.mapView);
+        View content = findViewById(R.id.main_content);
+        MapView mapView = content.findViewById(R.id.mapView);
         mapView.onLowMemory();
     }
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        MapView mapView = findViewById(R.id.mapView);
+        View content = findViewById(R.id.main_content);
+        MapView mapView = content.findViewById(R.id.mapView);
         mapView.onSaveInstanceState(outState);
     }
 
@@ -347,5 +380,16 @@ public class HouseDetailActivity extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

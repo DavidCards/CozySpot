@@ -38,9 +38,4 @@ public class Booking {
     public void setEndDate(String endDate) { this.endDate = endDate; }
     public double getTotalPrice() { return totalPrice; }
     public void setTotalPrice(double totalPrice) { this.totalPrice = totalPrice; }
-
-    public double getPricePerNight(double housePricePerNight, int nights) {
-        if (nights <= 0) return 0;
-        return totalPrice / nights;
-    }
 }

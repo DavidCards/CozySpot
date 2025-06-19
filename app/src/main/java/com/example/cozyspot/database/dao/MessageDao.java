@@ -20,4 +20,13 @@ public interface MessageDao {
 
     @Delete
     void delete(Message message);
+
+    @Query("SELECT * FROM message WHERE senderId = :userId OR receiverId = :userId")
+    List<Message> getMessagesForUser(int userId);
+
+    @Query("SELECT DISTINCT receiverId FROM message WHERE senderId = :userId")
+    List<Integer> getReceiversForUser(int userId);
+
+    @Query("SELECT DISTINCT senderId FROM message WHERE receiverId = :userId")
+    List<Integer> getSendersForUser(int userId);
 }

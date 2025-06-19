@@ -1,88 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="#C1FDB6"
-            android:text="Voltar"
-            android:textColor="#000000" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="#FFF" />
 
-        <TextView
-            android:id="@+id/textViewBookingTitle"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Título da Casa"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:background="#C1FDB6"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="CozySpot"
+            app:titleTextColor="#000000" />
 
-        <ImageView
-            android:id="@+id/imageViewBookingHouse"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="Imagem da casa" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewBookingLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Local: ..."
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <org.maplibre.android.maps.MapView
-            android:id="@+id/mapViewBooking"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="12dp" />
+                <TextView
+                    android:id="@+id/textViewBookingTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título da Casa"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:id="@+id/textViewBookingDates"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="de ... a ..."
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+                <ImageView
+                    android:id="@+id/imageViewBookingHouse"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="Imagem da casa" />
 
-        <TextView
-            android:id="@+id/textViewBookingPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Preço por noite: ..."
-            android:textSize="16sp"
-            android:layout_marginBottom="4dp" />
+                <TextView
+                    android:id="@+id/textViewBookingLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Local: ..."
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:id="@+id/textViewBookingTotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total: ..."
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+                <org.maplibre.android.maps.MapView
+                    android:id="@+id/mapViewBooking"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="12dp" />
 
-        <TextView
-            android:id="@+id/textViewBookingDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descrição da casa"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+                <TextView
+                    android:id="@+id/textViewBookingDates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="de ... a ..."
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
 
+                <TextView
+                    android:id="@+id/textViewBookingPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preço por noite: ..."
+                    android:textSize="16sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/textViewBookingTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total: ..."
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/textViewBookingDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descrição da casa"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-</ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawer_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

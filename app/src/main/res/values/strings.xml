@@ -7,4 +7,6 @@
     <string name="dialog_approximate_location">Your location will be approximate. To enable precise location, go to app settings and grant Fine Location permission.</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_settings">Go to Settings</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_send_sms">Send result by Email</string>
 </resources>

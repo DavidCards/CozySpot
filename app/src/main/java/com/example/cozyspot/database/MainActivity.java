@@ -101,7 +101,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String endDate = editTextEndDate.getText().toString().trim();
                 String guestsString = editTextGuests.getText().toString().trim();
                 int guests = 0;
-                try { guests = Integer.parseInt(guestsString); } catch (Exception ignored) {}
+                try {
+                    guests = Integer.parseInt(guestsString);
+                } catch (Exception ignored) {
+                }
                 if (location.isEmpty()) {
                     editTextLocation.setError("Localização é obrigatória");
                     return;
@@ -221,9 +224,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         new android.app.DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
             String dateStr = String.format(java.util.Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth);
             editText.setText(dateStr);
-        },
-        calendar.get(java.util.Calendar.YEAR),
-        calendar.get(java.util.Calendar.MONTH),
-        calendar.get(java.util.Calendar.DAY_OF_MONTH)).show();
+        }, calendar.get(java.util.Calendar.YEAR), calendar.get(java.util.Calendar.MONTH), calendar.get(java.util.Calendar.DAY_OF_MONTH)).show();
     }
 }

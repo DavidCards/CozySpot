@@ -48,7 +48,6 @@ public class MessagesSimpleAdapter extends RecyclerView.Adapter<MessagesSimpleAd
         holder.textViewContent.setText(message.getContent());
         holder.textViewFromTo.setText("De: " + from + "   Para: " + to);
         holder.textViewTimestamp.setText("Data: " + message.getTimestamp());
-        holder.textViewHouseTitle.setVisibility(View.GONE);
         holder.itemView.setOnClickListener(v -> {
             if (onMessageClickListener != null) {
                 onMessageClickListener.onMessageClick(message);
@@ -62,13 +61,12 @@ public class MessagesSimpleAdapter extends RecyclerView.Adapter<MessagesSimpleAd
     }
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewContent, textViewFromTo, textViewTimestamp, textViewHouseTitle;
+        TextView textViewContent, textViewFromTo, textViewTimestamp;
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewContent = itemView.findViewById(R.id.textViewMessageContent);
             textViewFromTo = itemView.findViewById(R.id.textViewMessageFromTo);
             textViewTimestamp = itemView.findViewById(R.id.textViewMessageTimestamp);
-            textViewHouseTitle = itemView.findViewById(R.id.textViewMessageHouseTitle);
         }
     }
 }

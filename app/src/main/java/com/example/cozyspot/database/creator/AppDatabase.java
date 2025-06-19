@@ -66,7 +66,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public static synchronized AppDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "BookingDB")
-                    .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
         }
@@ -132,23 +131,13 @@ public abstract class AppDatabase extends RoomDatabase {
                     Favorite favorite3 = new Favorite(charlieId, portoId);
                     Favorite favorite4 = new Favorite(dianaId, bragaId);
                     favoriteDao.insert(favorite1, favorite2, favorite3, favorite4);
-                    Message message1 = new Message(aliceId, dianaId, "Olá, a casa de Lisboa está disponível para o Natal?", "2024-06-15 10:00:00");
-                    Message message2 = new Message(dianaId, aliceId, "Olá Alice, infelizmente já está reservada de 10 a 15 de dezembro.", "2024-06-15 10:05:00");
-                    Message message3 = new Message(charlieId, bobId, "A casa do Porto aceita animais?", "2024-06-16 14:30:00");
-                    Message message4 = new Message(bobId, charlieId, "Sim, animais pequenos são bem-vindos!", "2024-06-16 14:35:00");
-                    Message message5 = new Message(davidId, bobId, "Olá Bob, a casa de Faro está disponível em agosto?", "2024-06-17 09:00:00");
-                    Message message6 = new Message(bobId, davidId, "Olá David, sim, está disponível para as datas que quiser!", "2024-06-17 09:05:00");
-                    Message message7 = new Message(aliceId, dianaId, "Gostaria de saber se aceitam pets na casa de Braga.", "2024-06-18 11:00:00");
-                    Message message8 = new Message(dianaId, aliceId, "Sim, aceitamos pets na casa de Braga!", "2024-06-18 11:05:00");
-                    Message message9 = new Message(charlieId, dianaId, "A casa de Coimbra tem estacionamento?", "2024-06-19 12:00:00");
-                    Message message10 = new Message(dianaId, charlieId, "Sim, tem estacionamento gratuito.", "2024-06-19 12:05:00");
-                    Message message11 = new Message(davidId, dianaId, "A casa de Cascais tem piscina?", "2024-06-20 13:00:00");
-                    Message message12 = new Message(dianaId, davidId, "Não, mas tem acesso fácil à praia!", "2024-06-20 13:05:00");
-                    Message message13 = new Message(bobId, aliceId, "Olá Alice, obrigado pela avaliação positiva!", "2024-06-21 15:00:00");
-                    Message message14 = new Message(aliceId, bobId, "De nada, adorei a estadia!", "2024-06-21 15:05:00");
-                    Message message15 = new Message(davidId, charlieId, "Oi Charlie, já ficou na casa de Nazaré? Recomenda?", "2024-06-22 16:00:00");
-                    Message message16 = new Message(charlieId, davidId, "Sim, recomendo muito! Vista incrível.", "2024-06-22 16:05:00");
-                    messageDao.insert(message1, message2, message3, message4, message5, message6, message7, message8, message9, message10, message11, message12, message13, message14, message15, message16);
+                    Message message1 = new Message(aliceId, dianaId, "Olá Diana, tudo bem?", "2024-06-15 10:00:00");
+                    Message message2 = new Message(dianaId, aliceId, "Oi Alice, tudo ótimo!", "2024-06-15 10:05:00");
+                    Message message3 = new Message(charlieId, bobId, "Olá Bob, gostei da casa do Porto!", "2024-06-16 14:30:00");
+                    Message message4 = new Message(bobId, charlieId, "Obrigado Charlie!", "2024-06-16 14:35:00");
+                    Message message5 = new Message(davidId, bobId, "Oi Bob, a casa de Faro está disponível?", "2024-06-17 09:00:00");
+                    Message message6 = new Message(bobId, davidId, "Olá David, está sim!", "2024-06-17 09:05:00");
+                    messageDao.insert(message1, message2, message3, message4, message5, message6);
                 }
             });
         }

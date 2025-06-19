@@ -1,233 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="database.SearchDetailsActivity">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#C1FDB6"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="CozySpot"
-        app:titleTextColor="#000000" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/buttonFavorite"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_heart_outline"
-        android:contentDescription="Favoritar casa" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="#FFF" />
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:numStars="5"
-        android:stepSize="1.0"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:isIndicator="false" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:background="#C1FDB6"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="CozySpot"
+            app:titleTextColor="#000000" />
 
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="#14000000"
-                android:paddingTop="12dp"
-                android:text="Localização"
-                android:textAlignment="center"
-                android:textSize="18dp" />
-
-            <org.maplibre.android.maps.MapView
-                android:id="@+id/mapView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/centerLocationCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="12dp"
-                android:background="@android:color/transparent"
-                android:padding="8dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
-
-                <ImageButton
-                    android:id="@+id/centerLocationButton"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/location_button_description"
-                    android:padding="12dp"
-                    android:src="@drawable/baseline_my_location_24" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="#14000000"
-                android:paddingTop="12dp"
-                android:text="Datas"
-                android:textAlignment="center"
-                android:textSize="18dp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="8dp">
-
-                <EditText
-                    android:id="@+id/editTextStartDate"
-                    android:layout_width="0dp"
+                android:orientation="vertical">
+                <!-- Conteúdo unificado das casas -->
+                <ImageButton
+                    android:id="@+id/buttonFavorite"
+                    android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:hint="Data início"
-                    android:focusable="false"
-                    android:inputType="none"
-                    android:background="@android:drawable/edit_text"
+                    android:layout_gravity="end"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_heart_outline"
+                    android:contentDescription="Favoritar casa" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:numStars="5"
+                    android:stepSize="1.0"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:isIndicator="false" />
+
+                <org.maplibre.android.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/centerLocationCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="12dp"
+                    android:background="@android:color/transparent"
                     android:padding="8dp"
-                    android:textSize="18sp"
-                    android:textAlignment="center" />
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+
+                    <ImageButton
+                        android:id="@+id/centerLocationButton"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="Centralizar no mapa"
+                        android:padding="12dp"
+                        android:src="@drawable/baseline_my_location_24" />
+                </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text=" a "
-                    android:textSize="18sp"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:gravity="center_vertical|center_horizontal" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#14000000"
+                    android:paddingTop="12dp"
+                    android:text="Localização"
+                    android:textAlignment="center"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#14000000"
+                    android:paddingTop="12dp"
+                    android:text="Datas"
+                    android:textAlignment="center"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="8dp">
+
+                    <EditText
+                        android:id="@+id/editTextStartDate"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="Data início"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:background="@android:drawable/edit_text"
+                        android:padding="8dp"
+                        android:textSize="18sp"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="até"
+                        android:textSize="18sp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:gravity="center_vertical|center_horizontal" />
+
+                    <EditText
+                        android:id="@+id/editTextEndDate"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="Data fim"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:background="@android:drawable/edit_text"
+                        android:padding="8dp"
+                        android:textSize="18sp"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#14000000"
+                    android:paddingTop="12dp"
+                    android:text="Localização"
+                    android:textAlignment="center"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/textViewHostName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Host: "
+                    android:textAlignment="center"
+                    android:textColor="#444"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="242dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Imagem da casa" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="142dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Descrição"
+                    android:textAlignment="textStart"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#C1FDB6"
+                    android:paddingTop="8dp"
+                    android:text="Faça uma pergunta ao anfitrião:"
+                    android:textAlignment="center"
+                    android:textSize="18dp" />
 
                 <EditText
-                    android:id="@+id/editTextEndDate"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:hint="Data fim"
-                    android:focusable="false"
-                    android:inputType="none"
-                    android:background="@android:drawable/edit_text"
-                    android:padding="8dp"
-                    android:textSize="18sp"
-                    android:textAlignment="center" />
+                    android:id="@+id/editTextText3"
+                    android:layout_width="match_parent"
+                    android:layout_height="101dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:ems="10"
+                    android:hint="Digite sua dúvida"
+                    android:inputType="text" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Enviar" />
+
+                <Button
+                    android:id="@+id/buttonBook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Reservar" />
             </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="#14000000"
-                android:paddingTop="12dp"
-                android:text="Localização"
-                android:textAlignment="center"
-                android:textSize="18dp" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawer_menu" />
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="match_parent"
-                android:layout_height="242dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="142dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:text="Descrição Descrição Descrição DescriçãoDescrição Descrição Descrição Descrição Descrição v DescriçãoDescrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição DescriçãoDescriçãoDescrição DescriçãoDescriçãoDescrição DescriçãoDescrição"
-                android:textAlignment="textStart"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/textViewRatingDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp"
-                android:text="Avaliação: .../5"
-                android:textSize="18sp"
-                android:textColor="#FFA000"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="match_parent"
-                android:layout_height="39dp"
-                android:layout_marginTop="10dp"
-                android:background="#C1FDB6"
-                android:paddingTop="8dp"
-                android:text="Tem dúvida? Disponha"
-                android:textAlignment="center"
-                android:textSize="18dp" />
-
-            <EditText
-                android:id="@+id/editTextText3"
-                android:layout_width="match_parent"
-                android:layout_height="101dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="20dp"
-                android:ems="10"
-                android:hint="Dúvida"
-                android:inputType="text" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:text="Enviar" />
-
-            <Button
-                android:id="@+id/buttonBook"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:text="Reservar agora" />
-
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

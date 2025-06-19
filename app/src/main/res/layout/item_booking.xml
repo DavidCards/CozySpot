@@ -2,18 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="#F5FFF5"
-    android:padding="12dp"
+    android:padding="8dp"
     android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/textViewBookingInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reserva: 2025-06-01 a 2025-06-05"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#222" />
+    <ImageView
+        android:id="@+id/imageViewHouse"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="12dp">
+
+        <TextView
+            android:id="@+id/textViewHouseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome da casa"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#222" />
+
+        <TextView
+            android:id="@+id/textViewBookingDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data da reserva"
+            android:textSize="15sp"
+            android:textColor="#444" />
+
+        <TextView
+            android:id="@+id/textViewTotalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preço total"
+            android:textSize="15sp"
+            android:textColor="#008000"
+            android:textStyle="bold" />
+    </LinearLayout>
 </LinearLayout>

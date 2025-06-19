@@ -51,6 +51,9 @@
         <activity
             android:name=".database.BookingDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".database.HelpActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -19,14 +19,45 @@ import org.maplibre.android.annotations.MarkerOptions;
 import org.maplibre.android.annotations.IconFactory;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 
 public class BookingDetailActivity extends AppCompatActivity {
     private ExecutorService executor = Executors.newSingleThreadExecutor();
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MapLibre.getInstance(this);
         setContentView(R.layout.activity_booking_detail);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            int userId = getIntent().getIntExtra("USER_ID", -1);
+            if (itemId == R.id.menu_home) {
+                startActivity(new android.content.Intent(this, MainActivity.class).putExtra("USER_ID", userId));
+            } else if (itemId == R.id.menu_profile) {
+                startActivity(new android.content.Intent(this, Profile.class).putExtra("USER_ID", userId));
+            } else if (itemId == R.id.menu_favorites) {
+                startActivity(new android.content.Intent(this, FavoritesActivity.class).putExtra("USER_ID", userId));
+            } else if (itemId == R.id.menu_messages) {
+                startActivity(new android.content.Intent(this, MessagesActivity.class).putExtra("USER_ID", userId));
+            } else if (itemId == R.id.menu_bookings) {
+                startActivity(new android.content.Intent(this, MyBookingsActivity.class).putExtra("USER_ID", userId));
+            }
+            drawerLayout.closeDrawers();
+            return true;
+        });
         int bookingId = getIntent().getIntExtra("BOOKING_ID", -1);
         int userId = getIntent().getIntExtra("USER_ID", -1);
         if (bookingId == -1) { finish(); return; }
@@ -85,6 +116,5 @@ public class BookingDetailActivity extends AppCompatActivity {
                 textViewTotal.setText(String.format("Total: %.2f€", booking.getTotalPrice()));
             });
         });
-        findViewById(R.id.buttonBack).setOnClickListener(v -> finish());
     }
 }
