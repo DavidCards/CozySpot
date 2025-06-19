@@ -49,26 +49,7 @@
 
 > Não há etapas suplementares ao processo padrão de importação.
 
-## 5. Executando Testes
-
-Para rodar os testes unitários:
-```bash
-./gradlew test
-```
-Para testes instrumentados (emulador/dispositivo):
-```bash
-./gradlew connectedAndroidTest
-```
-
-## 6. Gerando APK
-
-Para gerar o APK de debug:
-```bash
-./gradlew assembleDebug
-```
-O APK estará em `app/build/outputs/apk/debug/`.
-
-## 7. Observações
+## 5. Observações
 
 - Certifique-se de usar o Java 11 para compatibilidade.
 - Consulte as licenças das bibliotecas externas nos links acima.
