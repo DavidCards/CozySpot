@@ -1,30 +1,77 @@
 # CozySpot
 
-CozySpot é uma aplicação Android para gestão de reservas de alojamentos em várias cidades de Portugal, como Lisboa, Porto, Braga, Coimbra e Faro. O sistema permite o registo e apresentação de diferentes casas e apartamentos, com informações detalhadas de localização, descrição, preço e capacidade.
+## 1. Versão do SDK Utilizado
 
-## Funcionalidades atuais
+- **compileSdk:** 35
+- **minSdk:** 24
+- **targetSdk:** 35
+- **Java:** 11
 
-- Listagem e visualização de casas/apartamentos disponíveis para reserva
-- Informação detalhada de cada alojamento (nome, cidade, descrição, preço, capacidade, localização geográfica)
-- Estrutura de dados para diferentes utilizadores (com proprietários associados aos alojamentos)
+## 2. Versão do Gradle
 
-## Tecnologias Utilizadas
+- **Plugin do Android:** 8.8.2
+- **Gradle Wrapper:** 8.10.2  
+  (`distributionUrl=https://services.gradle.org/distributions/gradle-8.10.2-bin.zip`)
 
-- **Plataforma:** Android (Java 11)
-- **Base de Dados local:** Room/SQLite (AndroidX)
-- **Bibliotecas:** Glide (imagens), MapLibre (mapas)
-- **Testes:** JUnit, Espresso
+## 3. Bibliotecas Utilizadas
 
-## Como executar
+| Biblioteca                                          | Versão   | Licença        | Link                                                                    |
+|-----------------------------------------------------|----------|----------------|-------------------------------------------------------------------------|
+| androidx.room:room-runtime                          | 2.6.1    | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/room            |
+| androidx.room:room-compiler                         | 2.6.1    | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/room            |
+| com.github.bumptech.glide:glide                     | 4.16.0   | BSD-2-Clause   | https://github.com/bumptech/glide                                       |
+| com.github.bumptech.glide:compiler                  | 4.16.0   | BSD-2-Clause   | https://github.com/bumptech/glide                                       |
+| org.maplibre.gl:android-sdk                         | 11.5.1   | BSD-2-Clause   | https://github.com/maplibre/maplibre-gl-native                          |
+| org.maplibre.gl:android-plugin-annotation-v9        | 3.0.2    | BSD-2-Clause   | https://github.com/maplibre/maplibre-plugins-android                    |
+| androidx.room:room-common-jvm                       | 2.7.1    | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/room            |
+| com.google.android.gms:play-services-appsearch       | 16.0.1   | Apache-2.0     | https://developers.google.com/android/guides/setup                      |
+| androidx.appcompat:appcompat                        | 1.7.0    | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/appcompat       |
+| com.google.android.material:material                | 1.12.0   | Apache-2.0     | https://github.com/material-components/material-components-android      |
+| androidx.activity:activity                          | 1.10.1   | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/activity        |
+| androidx.constraintlayout:constraintlayout          | 2.2.1    | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/constraintlayout|
+| junit:junit                                         | 4.13.2   | EPL-1.0        | https://junit.org                                                       |
+| androidx.test.ext:junit                             | 1.2.1    | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/test            |
+| androidx.test.espresso:espresso-core                | 3.6.1    | Apache-2.0     | https://developer.android.com/jetpack/androidx/releases/espresso        |
 
-1. Clone o repositório:
+## 4. Processo de Importação
+
+1. **Clone** o repositório:
    ```bash
-   git clone https://github.com/DavidCards/CozySpot.git
+   git clone <url-do-repositorio>
    ```
-2. Abra o projeto no Android Studio.
-3. Sincronize as dependências (Gradle).
-4. Compile e execute a aplicação num emulador ou dispositivo Android.
+2. **Abra** o projeto no Android Studio (versão compatível com Java 11 e Gradle 8.10.2).
+3. O Android Studio irá sincronizar as dependências automaticamente via Gradle.
+4. **Compile** usando o botão "Build" ou via terminal:
+   ```bash
+   ./gradlew build
+   ```
+5. **Run/Debug:** Execute no emulador ou dispositivo físico.
 
-## Licença
+> Não há etapas suplementares ao processo padrão de importação.
 
-[MIT](LICENSE)
+## 5. Executando Testes
+
+Para rodar os testes unitários:
+```bash
+./gradlew test
+```
+Para testes instrumentados (emulador/dispositivo):
+```bash
+./gradlew connectedAndroidTest
+```
+
+## 6. Gerando APK
+
+Para gerar o APK de debug:
+```bash
+./gradlew assembleDebug
+```
+O APK estará em `app/build/outputs/apk/debug/`.
+
+## 7. Observações
+
+- Certifique-se de usar o Java 11 para compatibilidade.
+- Consulte as licenças das bibliotecas externas nos links acima.
+- Para dúvidas sobre versões de dependências, consulte `gradle/libs.versions.toml`.
+
+---
