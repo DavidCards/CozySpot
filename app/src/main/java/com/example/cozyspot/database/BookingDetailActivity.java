@@ -102,7 +102,6 @@ public class BookingDetailActivity extends AppCompatActivity {
                     });
                 }
                 textViewDates.setText("de " + booking.getStartDate() + " a " + booking.getEndDate());
-                // Calcular número de noites
                 int nights = 1;
                 try {
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());

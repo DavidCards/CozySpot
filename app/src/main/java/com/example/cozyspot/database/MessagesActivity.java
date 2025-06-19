@@ -66,20 +66,18 @@ public class MessagesActivity extends AppCompatActivity {
         executor.execute(() -> {
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());
             List<Message> messagesToShow = db.messageDao().getMessagesForUser(userId);
-            // Ordenar por data decrescente (mais recentes primeiro)
             messagesToShow.sort((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()));
             Map<Integer, String> userNamesCache = new HashMap<>();
             allUsersList = db.userDao().getAll();
             for (com.example.cozyspot.database.Classes.User u : allUsersList) {
                 userNamesCache.put(u.getId(), u.getUserName());
             }
-            // Buscar apenas usuários com quem já trocou mensagens
             List<Integer> receivers = db.messageDao().getReceiversForUser(userId);
             List<Integer> senders = db.messageDao().getSendersForUser(userId);
             java.util.Set<Integer> contactIds = new java.util.HashSet<>();
             contactIds.addAll(receivers);
             contactIds.addAll(senders);
-            contactIds.remove(userId); // nunca mostrar o próprio user
+            contactIds.remove(userId);
             List<String> userNamesForSpinner = new ArrayList<>();
             userIdsForSpinner.clear();
             for (com.example.cozyspot.database.Classes.User u : allUsersList) {
@@ -125,7 +123,6 @@ public class MessagesActivity extends AppCompatActivity {
             Message replyMessage = new Message(userIdReply, receiverId, reply, timestamp);
             executorService.execute(() -> {
                 db.messageDao().insert(replyMessage);
-                // Atualizar a lista imediatamente após o envio
                 List<Message> messagesToShow = db.messageDao().getMessagesForUser(userIdReply);
                 messagesToShow.sort((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()));
                 Map<Integer, String> userNamesCache = new HashMap<>();

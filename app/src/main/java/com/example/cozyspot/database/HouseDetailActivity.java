@@ -202,7 +202,6 @@ public class HouseDetailActivity extends AppCompatActivity {
                 description.setText(house.getDescription() + "\n\nEsta acomodação oferece uma experiência única, com todas as comodidades para uma estadia confortável, incluindo Wi-Fi rápido, cozinha equipada, proximidade a pontos turísticos e transporte público. Ideal para famílias, casais ou viajantes a trabalho. Aproveite o melhor da cidade com conforto e segurança!");
                 price.setText(String.format("Preço por noite: %.2f€", house.getPricePerNight()));
 
-                // Buscar nome do host
                 executor.execute(() -> {
                     com.example.cozyspot.database.Classes.User host = db.userDao().findById(house.getOwnerId());
                     String hostDisplay = host != null ? host.getUserName() : "(desconhecido)";
