@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="#C1FDB6"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="@string/app_name"
+            app:title="CozySpot"
             app:titleTextColor="#000000" />
 
         <ScrollView
@@ -39,7 +39,7 @@
                     android:id="@+id/textViewBookingTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/house_name"
+                    android:text="Título da Casa"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp" />
@@ -50,7 +50,7 @@
                     android:layout_height="180dp"
                     android:scaleType="centerCrop"
                     android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/house_image" />
+                    android:contentDescription="Imagem da casa" />
 
                 <TextView
                     android:id="@+id/textViewBookingLocation"
@@ -95,7 +95,7 @@
                     android:id="@+id/textViewBookingDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/description"
+                    android:text="Descrição da casa"
                     android:textSize="16sp"
                     android:layout_marginBottom="8dp" />
 

@@ -2,13 +2,6 @@
     <string name="app_name">CozySpot</string>
     <string name="navigation_drawer_open">Open menu</string>
     <string name="navigation_drawer_close">Close menu</string>
-    <string name="location_button_description">Access my location</string>
-    <string name="dialog_location_permission">We need your location to center the map. Please grant location permission.</string>
-    <string name="dialog_approximate_location">Your location will be approximate. To enable precise location, go to app settings and grant Fine Location permission.</string>
-    <string name="dialog_ok">OK</string>
-    <string name="dialog_settings">Go to Settings</string>
-    <string name="menu_help">Help</string>
-    <string name="menu_send_sms">Send result by Email</string>
     <string name="menu_home">Home</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_favorites">Favorites</string>
@@ -32,7 +25,6 @@
     <string name="favorites">Favorites</string>
     <string name="messages">Messages</string>
     <string name="type_message">Type your message</string>
-    <string name="send_message">Send message</string>
     <string name="user_name">User name</string>
     <string name="user_type">User type</string>
     <string name="history">History</string>
@@ -42,7 +34,6 @@
     <string name="until">until</string>
     <string name="end_date">End date</string>
     <string name="host">Host:</string>
-    <string name="house_image">House image</string>
     <string name="description">Description</string>
     <string name="ask_host">Ask the host a question:</string>
     <string name="type_question">Type your question</string>
@@ -60,19 +51,10 @@
     <string name="phone">Phone</string>
     <string name="fill_all_fields">Fill in all fields</string>
     <string name="email_already_registered">Email already registered</string>
-    <string name="register_success">Registration successful!</string>
-    <string name="no_search_criteria">No search criteria provided.</string>
-    <string name="location_permission_denied">Location permission denied</string>
-    <string name="registration_successful">Registration successful!</string>
-    <string name="login_successful">Login successful!</string>
     <string name="invalid_email_or_password">Invalid email or password</string>
     <string name="database_preparation">Please wait... preparing the database</string>
     <string name="message_sent">Message sent!</string>
     <string name="select_recipient">Select recipient</string>
     <string name="write_message">Write a message</string>
-    <string name="search_criteria_missing">No search criteria provided</string>
-    <string name="location_required">Location is required</string>
-    <string name="question_sent">Question sent to the host!</string>
-    <string name="unable_to_get_location">Unable to get location</string>
     <string name="layout_view_error">Error: view not found in layout</string>
 </resources>
