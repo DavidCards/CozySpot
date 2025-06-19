@@ -80,6 +80,14 @@ public class HouseDetailActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MessagesActivity.class).putExtra("USER_ID", getIntent().getIntExtra("USER_ID", -1)));
             } else if (id == R.id.menu_bookings) {
                 startActivity(new Intent(this, MyBookingsActivity.class).putExtra("USER_ID", getIntent().getIntExtra("USER_ID", -1)));
+            } else if (id == R.id.menu_logout) {
+                drawerLayout.closeDrawers();
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }, 250);
             }
             drawerLayout.closeDrawers();
             return true;
@@ -184,16 +192,31 @@ public class HouseDetailActivity extends AppCompatActivity {
                         executor.execute(() -> {
                             boolean userExists = db.userDao().findById(userId) != null;
                             boolean houseExists = db.houseDao().findHouseById(houseId) != null;
+                            boolean hasReservation = db.bookingDao().hasCompletedReservation(userId, houseId);
+                            boolean hasReviewed = db.reviewDao().hasUserReviewedHouse(userId, houseId);
+
                             if (!userExists || !houseExists) {
-                                runOnUiThread(() -> Toast.makeText(HouseDetailActivity.this, "Erro: usuário ou casa não encontrados.", Toast.LENGTH_LONG).show());
                                 return;
                             }
-                            db.reviewDao().insert(new com.example.cozyspot.database.Classes.Review(userId, houseId, (int)value, ""));
+
+                            if (!hasReservation) {
+                                return;
+                            }
+
+                            if (hasReviewed) {
+                                return;
+                            }
+
+                            db.reviewDao().insert(new com.example.cozyspot.database.Classes.Review(userId, houseId, (int) value, ""));
                             float avgRating = db.reviewDao().getAverageRatingForHouse(houseId);
-                            int ratingInt = Math.round(avgRating);
                             runOnUiThread(() -> {
                                 ratingBar.setRating(avgRating);
                             });
+                        });
+                    } else {
+                        executor.execute(() -> {
+                            float avgRating = db.reviewDao().getAverageRatingForHouse(houseId);
+                            runOnUiThread(() -> ratingBar.setRating(avgRating));
                         });
                     }
                 });
@@ -382,13 +405,8 @@ public class HouseDetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
 }

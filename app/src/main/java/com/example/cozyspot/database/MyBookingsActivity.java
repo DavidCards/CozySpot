@@ -54,6 +54,14 @@ public class MyBookingsActivity extends AppCompatActivity {
             } else if (itemId == R.id.menu_bookings) {
                 drawerLayout.closeDrawers();
                 return true;
+            } else if (itemId == R.id.menu_logout) {
+                drawerLayout.closeDrawers();
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }, 250);
             }
             drawerLayout.closeDrawers();
             return true;
@@ -90,12 +98,6 @@ public class MyBookingsActivity extends AppCompatActivity {
                 }
             });
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

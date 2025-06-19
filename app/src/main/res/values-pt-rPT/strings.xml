@@ -58,4 +58,8 @@
     <string name="select_recipient">Selecione o destinatário</string>
     <string name="write_message">Escreva uma mensagem</string>
     <string name="layout_view_error">Erro: view não encontrada no layout</string>
+    <string name="menu_logout">Sair</string>
+    <string name="error_user_or_house_not_found">Erro: Usuário ou casa não encontrados.</string>
+    <string name="error_no_reservation">Erro: Nenhuma reserva encontrada para esta casa.</string>
+    <string name="error_already_reviewed">Erro: Você já avaliou esta casa.</string>
 </resources>

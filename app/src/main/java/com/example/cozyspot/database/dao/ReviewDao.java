@@ -27,4 +27,7 @@ public interface ReviewDao {
 
     @Query("SELECT AVG(rating) FROM review WHERE houseId = :houseId")
     float getAverageRatingForHouse(int houseId);
+
+    @Query("SELECT COUNT(*) > 0 FROM review WHERE userId = :userId AND houseId = :houseId")
+    boolean hasUserReviewedHouse(int userId, int houseId);
 }

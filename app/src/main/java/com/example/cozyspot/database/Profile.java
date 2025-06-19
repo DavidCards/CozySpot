@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cozyspot.R;
+import com.example.cozyspot.database.Classes.Booking;
 import com.example.cozyspot.database.Classes.User;
 import com.example.cozyspot.database.creator.AppDatabase;
 import com.google.android.material.navigation.NavigationView;
@@ -56,13 +57,12 @@ public class Profile extends AppCompatActivity {
         executor.execute(() -> {
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());
             User user = db.userDao().findById(userId);
-            List<com.example.cozyspot.database.Classes.Booking> bookings = db.bookingDao().getAll();
+            String currentDate = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(new java.util.Date());
+            List<Booking> bookings = db.bookingDao().getCompletedBookingsForUser(userId, currentDate);
             List<com.example.cozyspot.database.Classes.House> reservedHouses = new java.util.ArrayList<>();
-            for (com.example.cozyspot.database.Classes.Booking booking : bookings) {
-                if (booking.getUserId() == userId) {
-                    com.example.cozyspot.database.Classes.House house = db.houseDao().findHouseById(booking.getHouseId());
-                    if (house != null) reservedHouses.add(house);
-                }
+            for (Booking booking : bookings) {
+                com.example.cozyspot.database.Classes.House house = db.houseDao().findHouseById(booking.getHouseId());
+                if (house != null) reservedHouses.add(house);
             }
             runOnUiThread(() -> {
                 if (user != null) {
@@ -76,7 +76,18 @@ public class Profile extends AppCompatActivity {
                         avatarView.setImageResource(resId);
                     }
                 }
-                HouseResultAdapter adapter = new HouseResultAdapter(Profile.this, reservedHouses, null, null, userId);
+                HouseResultAdapter adapter = new HouseResultAdapter(Profile.this, reservedHouses, house -> {
+                    executor.execute(() -> {
+                        AppDatabase db1 = AppDatabase.getInstance(getApplicationContext());
+                        Booking booking = db1.bookingDao().findBookingByHouseIdAndUserId(house.getId(), userId);
+                        if (booking != null) {
+                            Intent intent = new Intent(Profile.this, BookingDetailActivity.class);
+                            intent.putExtra("BOOKING_ID", booking.getId());
+                            intent.putExtra("USER_ID", userId);
+                            startActivity(intent);
+                        }
+                    });
+                }, null, null, userId);
                 recyclerViewHistory.setAdapter(adapter);
             });
         });
@@ -104,12 +115,6 @@ public class Profile extends AppCompatActivity {
             drawerLayout.closeDrawers();
             return true;
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

@@ -7,6 +7,7 @@
     <string name="menu_favorites">Favorites</string>
     <string name="menu_messages">Messages</string>
     <string name="menu_bookings">My Bookings</string>
+    <string name="menu_logout">Logout</string>
     <string name="location">Location</string>
     <string name="dates">Dates</string>
     <string name="guests">Guests</string>
@@ -57,4 +58,5 @@
     <string name="select_recipient">Select recipient</string>
     <string name="write_message">Write a message</string>
     <string name="layout_view_error">Error: view not found in layout</string>
+    <string name="registration_successful">Registration successful!</string>
 </resources>

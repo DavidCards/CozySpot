@@ -119,7 +119,12 @@ public abstract class AppDatabase extends RoomDatabase {
                     Booking booking3 = new Booking(charlieId, faroId, "2025-08-01", "2025-08-10", 9 * 200.00);
                     Booking booking4 = new Booking(dianaId, bragaId, "2025-12-12", "2025-12-13", 1 * 140.00);
                     Booking booking5 = new Booking(aliceId, coimbraId, "2025-07-20", "2025-07-25", 5 * 90.00);
-                    bookingDao.insert(booking1, booking2, booking3, booking4, booking5);
+                    Booking booking6 = new Booking(davidId, lisboaId, "2025-06-01", "2025-06-10", 10 * 120.00);
+                    Booking booking7 = new Booking(charlieId, portoId, "2025-05-15", "2025-05-20", 5 * 100.00);
+                    Booking booking8 = new Booking(aliceId, faroId, "2025-04-01", "2025-04-10", 9 * 200.00);
+                    Booking booking9 = new Booking(bobId, bragaId, "2025-03-12", "2025-03-13", 1 * 140.00);
+                    Booking booking10 = new Booking(dianaId, coimbraId, "2025-02-20", "2025-02-25", 5 * 90.00);
+                    bookingDao.insert(booking1, booking2, booking3, booking4, booking5, booking6, booking7, booking8, booking9, booking10);
                     Review review1 = new Review(aliceId, lisboaId, 5, "Apartamento excelente no centro de Lisboa!");
                     Review review2 = new Review(charlieId, portoId, 4, "Vista incrível para o Douro.");
                     Review review3 = new Review(aliceId, faroId, 5, "A moradia do Algarve é perfeita para férias em família.");

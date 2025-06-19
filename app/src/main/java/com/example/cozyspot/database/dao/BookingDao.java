@@ -29,4 +29,13 @@ public interface BookingDao {
 
     @Query("SELECT * FROM booking WHERE userId = :userId")
     List<Booking> getBookingsForUser(int userId);
+
+    @Query("SELECT COUNT(*) > 0 FROM booking WHERE userId = :userId AND houseId = :houseId")
+    boolean hasCompletedReservation(int userId, int houseId);
+
+    @Query("SELECT * FROM booking WHERE userId = :userId AND endDate < :currentDate")
+    List<Booking> getCompletedBookingsForUser(int userId, String currentDate);
+
+    @Query("SELECT * FROM booking WHERE houseId = :houseId AND userId = :userId LIMIT 1")
+    Booking findBookingByHouseIdAndUserId(int houseId, int userId);
 }

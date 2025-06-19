@@ -47,7 +47,12 @@ public class FavoritesActivity extends AppCompatActivity {
                 if (house != null) favoriteHouses.add(house);
             }
             runOnUiThread(() -> {
-                HouseResultAdapter adapter = new HouseResultAdapter(FavoritesActivity.this, favoriteHouses, null, null, userId);
+                HouseResultAdapter adapter = new HouseResultAdapter(FavoritesActivity.this, favoriteHouses, house -> {
+                    Intent intent = new Intent(FavoritesActivity.this, HouseDetailActivity.class);
+                    intent.putExtra("HOUSE_ID", house.getId());
+                    intent.putExtra("USER_ID", userId);
+                    startActivity(intent);
+                }, null, null, userId);
                 recyclerView.setAdapter(adapter);
             });
         });
@@ -78,16 +83,18 @@ public class FavoritesActivity extends AppCompatActivity {
                     startActivity(intent);
                 }, 250);
                 return true;
+            } else if (itemId == R.id.menu_logout) {
+                drawerLayout.closeDrawers();
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }, 250);
             }
             drawerLayout.closeDrawers();
             return true;
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

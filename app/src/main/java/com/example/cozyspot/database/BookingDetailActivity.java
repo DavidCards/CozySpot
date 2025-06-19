@@ -1,5 +1,6 @@
 package com.example.cozyspot.database;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,6 +55,14 @@ public class BookingDetailActivity extends AppCompatActivity {
                 startActivity(new android.content.Intent(this, MessagesActivity.class).putExtra("USER_ID", userId));
             } else if (itemId == R.id.menu_bookings) {
                 startActivity(new android.content.Intent(this, MyBookingsActivity.class).putExtra("USER_ID", userId));
+            } else if (itemId == R.id.menu_logout) {
+                drawerLayout.closeDrawers();
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }, 250);
             }
             drawerLayout.closeDrawers();
             return true;

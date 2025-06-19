@@ -91,6 +91,14 @@ public class SearchResult extends AppCompatActivity {
                     startActivity(intent);
                 }, 250);
                 return true;
+            } else if (id == R.id.menu_logout) {
+                drawerLayout.closeDrawers();
+                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }, 250);
             }
             drawerLayout.closeDrawers();
             return true;
@@ -155,7 +163,12 @@ public class SearchResult extends AppCompatActivity {
             currentHouseList.sort((h1, h2) -> sortByPriceAsc ?
                     Double.compare(h1.getPricePerNight(), h2.getPricePerNight()) :
                     Double.compare(h2.getPricePerNight(), h1.getPricePerNight()));
-            houseResultAdapter = new HouseResultAdapter(this, currentHouseList, searchStartDate, searchEndDate, userId);
+            houseResultAdapter = new HouseResultAdapter(this, currentHouseList, house -> {
+                Intent intent = new Intent(SearchResult.this, HouseDetailActivity.class);
+                intent.putExtra("HOUSE_ID", house.getId());
+                intent.putExtra("USER_ID", userId);
+                startActivity(intent);
+            }, searchStartDate, searchEndDate, userId);
             recyclerViewHouses.setAdapter(houseResultAdapter);
         } else if (criteria.equals("rating")) {
             executorService.execute(() -> {
@@ -169,7 +182,12 @@ public class SearchResult extends AppCompatActivity {
                         Float.compare(ratings.get(h1.getId()), ratings.get(h2.getId())) :
                         Float.compare(ratings.get(h2.getId()), ratings.get(h1.getId())));
                 runOnUiThread(() -> {
-                    houseResultAdapter = new HouseResultAdapter(this, currentHouseList, searchStartDate, searchEndDate, userId);
+                    houseResultAdapter = new HouseResultAdapter(this, currentHouseList, house -> {
+                        Intent intent = new Intent(SearchResult.this, HouseDetailActivity.class);
+                        intent.putExtra("HOUSE_ID", house.getId());
+                        intent.putExtra("USER_ID", userId);
+                        startActivity(intent);
+                    }, searchStartDate, searchEndDate, userId);
                     recyclerViewHouses.setAdapter(houseResultAdapter);
                 });
             });
@@ -209,17 +227,16 @@ public class SearchResult extends AppCompatActivity {
                         textViewNoResults.setVisibility(View.GONE);
                     }
                     recyclerViewHouses.setVisibility(View.VISIBLE);
-                    houseResultAdapter = new HouseResultAdapter(this, uniqueAvailableHouses, searchStartDate, searchEndDate, userId);
+                    houseResultAdapter = new HouseResultAdapter(this, uniqueAvailableHouses, house -> {
+                        Intent intent = new Intent(SearchResult.this, HouseDetailActivity.class);
+                        intent.putExtra("HOUSE_ID", house.getId());
+                        intent.putExtra("USER_ID", userId);
+                        startActivity(intent);
+                    }, searchStartDate, searchEndDate, userId);
                     recyclerViewHouses.setAdapter(houseResultAdapter);
                 }
             });
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

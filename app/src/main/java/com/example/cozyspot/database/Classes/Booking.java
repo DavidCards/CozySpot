@@ -3,11 +3,15 @@ package com.example.cozyspot.database.Classes;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(foreignKeys = {
     @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "userId", onDelete = ForeignKey.CASCADE),
     @ForeignKey(entity = House.class, parentColumns = "id", childColumns = "houseId", onDelete = ForeignKey.CASCADE)
+}, indices = {
+    @Index(value = "userId"),
+    @Index(value = "houseId")
 })
 public class Booking {
     @PrimaryKey(autoGenerate = true)

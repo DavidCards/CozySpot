@@ -28,10 +28,16 @@ public class HouseResultAdapter extends RecyclerView.Adapter<HouseResultAdapter.
     private final String searchEndDate;
     private final Context context;
     private final int userId;
+    private final OnHouseClickListener onHouseClickListener;
 
-    public HouseResultAdapter(Context context, List<House> houseList, String searchStartDate, String searchEndDate, int userId) {
+    public interface OnHouseClickListener {
+        void onHouseClick(House house);
+    }
+
+    public HouseResultAdapter(Context context, List<House> houseList, OnHouseClickListener onHouseClickListener, String searchStartDate, String searchEndDate, int userId) {
         this.context = context;
         this.houseList = houseList;
+        this.onHouseClickListener = onHouseClickListener;
         this.searchStartDate = searchStartDate;
         this.searchEndDate = searchEndDate;
         this.userId = userId;
@@ -68,13 +74,9 @@ public class HouseResultAdapter extends RecyclerView.Adapter<HouseResultAdapter.
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imageViewHouse);
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, HouseDetailActivity.class);
-            intent.putExtra("HOUSE_ID", house.getId());
-            intent.putExtra("USER_ID", userId);
-            if (searchStartDate != null) intent.putExtra("SEARCH_START_DATE", searchStartDate);
-            if (searchEndDate != null) intent.putExtra("SEARCH_END_DATE", searchEndDate);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            if (onHouseClickListener != null) {
+                onHouseClickListener.onHouseClick(house);
+            }
         });
 
         holder.textViewRating.setText(context.getString(R.string.rating_0_5));

@@ -152,26 +152,12 @@ public class MessagesActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.menu_home) {
-                startActivity(new Intent(this, MainActivity.class).putExtra("USER_ID", userId).putExtra("USER_ROLE", userRole));
-            } else if (itemId == R.id.menu_profile) {
-                startActivity(new Intent(this, Profile.class).putExtra("USER_ID", userId).putExtra("USER_ROLE", userRole));
-            } else if (itemId == R.id.menu_favorites) {
-                startActivity(new Intent(this, FavoritesActivity.class).putExtra("USER_ID", userId).putExtra("USER_ROLE", userRole));
-            } else if (itemId == R.id.menu_messages) {
-                startActivity(new Intent(this, MessagesActivity.class).putExtra("USER_ID", userId).putExtra("USER_ROLE", userRole));
-            } else if (itemId == R.id.menu_bookings) {
-                drawerLayout.closeDrawers();
-                drawerLayout.postDelayed(() -> {
-                    Intent intent = new Intent(this, MyBookingsActivity.class);
-                    intent.putExtra("USER_ID", userId);
-                    intent.putExtra("USER_ROLE", userRole);
-                    startActivity(intent);
-                }, 250);
-                return true;
-            }
-            drawerLayout.closeDrawers();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("USER_ID", userId);
+            intent.putExtra("USER_ROLE", userRole);
+            intent.putExtra("NAVIGATION_ITEM_ID", item.getItemId());
+            startActivity(intent);
+            finish();
             return true;
         });
     }

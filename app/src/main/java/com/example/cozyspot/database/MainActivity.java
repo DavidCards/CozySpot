@@ -184,6 +184,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }, 250);
             return true;
+        } else if (id == R.id.menu_logout) {
+            drawerLayout.closeDrawers();
+            new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }, 250);
+            return true;
         }
         drawerLayout.closeDrawers();
         return true;
@@ -204,7 +213,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 top10.add(houseWithRatings.get(i).house);
             }
             runOnUiThread(() -> {
-                topRatedAdapter = new HouseResultAdapter(this, top10, null, null, userId);
+                topRatedAdapter = new HouseResultAdapter(this, top10, house -> {
+                    Intent intent = new Intent(MainActivity.this, HouseDetailActivity.class);
+                    intent.putExtra("HOUSE_ID", house.getId());
+                    intent.putExtra("USER_ID", userId);
+                    startActivity(intent);
+                }, null, null, userId);
                 recyclerViewTopRated.setAdapter(topRatedAdapter);
             });
         }).start();
