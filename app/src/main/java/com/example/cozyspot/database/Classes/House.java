@@ -18,11 +18,11 @@ public class House {
     private int rooms;
     private int guests;
     private int ownerId;
-    private String imageUrl;
+    private String imageName;
     private double latitude;
     private double longitude;
 
-    public House(String title, String location, String description, double pricePerNight, int rooms, int guests, int ownerId, String imageUrl, double latitude, double longitude) {
+    public House(String title, String location, String description, double pricePerNight, int rooms, int guests, int ownerId, String imageName, double latitude, double longitude) {
         this.title = title;
         this.location = location;
         this.description = description;
@@ -30,13 +30,19 @@ public class House {
         this.rooms = rooms;
         this.guests = guests;
         this.ownerId = ownerId;
-        this.imageUrl = imageUrl;
+        this.imageName = imageName;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getTitle() { return title; }

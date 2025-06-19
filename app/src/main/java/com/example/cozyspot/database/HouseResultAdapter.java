@@ -68,11 +68,12 @@ public class HouseResultAdapter extends RecyclerView.Adapter<HouseResultAdapter.
             });
         }).start();
         holder.textViewPrice.setText(context.getString(R.string.price_per_night) + ": " + String.format(Locale.getDefault(), "%.2f€", house.getPricePerNight()));
-        Glide.with(context)
-                .load(house.getImageUrl())
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
-                .into(holder.imageViewHouse);
+        int imageResource = context.getResources().getIdentifier(house.getImageName(), "drawable", context.getPackageName());
+        if (imageResource != 0) {
+            holder.imageViewHouse.setImageResource(imageResource);
+        } else {
+            holder.imageViewHouse.setImageResource(R.drawable.ic_launcher_background);
+        }
         holder.itemView.setOnClickListener(v -> {
             if (onHouseClickListener != null) {
                 onHouseClickListener.onHouseClick(house);

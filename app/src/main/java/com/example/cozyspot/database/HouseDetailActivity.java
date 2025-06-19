@@ -131,7 +131,6 @@ public class HouseDetailActivity extends AppCompatActivity {
                 TextView hostName = content.findViewById(R.id.textViewHostName);
 
                 if (imageView == null || title == null || location == null || description == null || price == null || buttonFavorite == null || ratingBar == null || editTextDuvida == null || buttonEnviar == null || buttonBook == null || editTextStartDate == null || editTextEndDate == null || mapView == null || centerLocationButton == null) {
-                    Toast.makeText(HouseDetailActivity.this, getString(R.string.layout_view_error), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -231,14 +230,15 @@ public class HouseDetailActivity extends AppCompatActivity {
                     runOnUiThread(() -> hostName.setText(getString(R.string.host) + " " + hostDisplay));
                 });
 
-                String imageUrl = house.getImageUrl();
-                if (imageView != null && imageUrl != null && !imageUrl.isEmpty()) {
-                    Glide.with(this)
-                            .load(imageUrl)
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .error(R.drawable.ic_launcher_background)
-                            .into(imageView);
-                } else if (imageView != null) {
+                String imageUrl = house.getImageName();
+                if (imageView != null) {
+                    int imageResource = getResources().getIdentifier(house.getImageName(), "drawable", getPackageName());
+                    if (imageResource != 0) {
+                        imageView.setImageResource(imageResource);
+                    } else {
+                        imageView.setImageResource(R.drawable.ic_launcher_background);
+                    }
+                } else {
                     imageView.setImageResource(R.drawable.ic_launcher_background);
                 }
 

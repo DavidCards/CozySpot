@@ -104,7 +104,6 @@ public class MessagesActivity extends AppCompatActivity {
         buttonSendReply.setOnClickListener(v -> {
             String reply = editTextReply.getText().toString().trim();
             if (reply.isEmpty()) {
-                Toast.makeText(this, getString(R.string.write_message), Toast.LENGTH_SHORT).show();
                 return;
             }
             int userIdReply = getIntent().getIntExtra("USER_ID", -1);

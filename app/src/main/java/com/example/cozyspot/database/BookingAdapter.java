@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import com.example.cozyspot.database.Classes.BookingWithHouse;
 import com.example.cozyspot.database.creator.AppDatabase;
 import com.example.cozyspot.R;
@@ -39,12 +38,13 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
     public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
         BookingWithHouse bwh = bookingWithHouseList.get(position);
         if (bwh.house != null) {
+            int imageResource = context.getResources().getIdentifier(bwh.house.getImageName(), "drawable", context.getPackageName());
+            if (imageResource != 0) {
+                holder.imageViewHouse.setImageResource(imageResource);
+            } else {
+                holder.imageViewHouse.setImageResource(R.drawable.ic_launcher_background);
+            }
             holder.textViewHouseName.setText(bwh.house.getTitle());
-            Glide.with(context)
-                .load(bwh.house.getImageUrl())
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
-                .into(holder.imageViewHouse);
         } else {
             holder.textViewHouseName.setText("Casa desconhecida");
             holder.imageViewHouse.setImageResource(R.drawable.ic_launcher_background);

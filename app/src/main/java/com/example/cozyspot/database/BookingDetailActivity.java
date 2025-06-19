@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
 import com.example.cozyspot.R;
 import com.example.cozyspot.database.Classes.Booking;
 import com.example.cozyspot.database.Classes.House;
@@ -88,11 +87,7 @@ public class BookingDetailActivity extends AppCompatActivity {
                     textViewTitle.setText(house.getTitle());
                     textViewLocation.setText("Local: " + house.getLocation());
                     textViewDescription.setText(house.getDescription());
-                    Glide.with(this)
-                        .load(house.getImageUrl())
-                        .placeholder(R.drawable.ic_launcher_background)
-                        .error(R.drawable.ic_launcher_background)
-                        .into(imageViewHouse);
+                    imageViewHouse.setImageResource(getResources().getIdentifier(house.getImageName(), "drawable", getPackageName()));
                     mapView.getMapAsync(mapLibreMap -> {
                         double lat = house.getLatitude();
                         double lon = house.getLongitude();
