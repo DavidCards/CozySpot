@@ -151,19 +151,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textViewLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="#14000000"
-                    android:paddingTop="12dp"
-                    android:text="@string/location"
-                    android:textAlignment="center"
-                    android:textSize="18dp" />
-
-                <TextView
                     android:id="@+id/textViewHostName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
