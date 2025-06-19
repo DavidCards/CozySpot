@@ -107,6 +107,7 @@ public class SearchResult extends AppCompatActivity {
         textViewLocation = findViewById(R.id.textViewLocation);
         textViewDate = findViewById(R.id.textViewDate);
         textViewGuests = findViewById(R.id.textViewGuests);
+        textViewNoResults = findViewById(R.id.textViewNoResults);
         db = AppDatabase.getInstance(getApplicationContext());
         executorService = Executors.newSingleThreadExecutor();
 
@@ -144,6 +145,13 @@ public class SearchResult extends AppCompatActivity {
                 textViewGuests.setText(String.valueOf(guests));
             }
             performSearch(location, startDate, endDate, guests);
+
+            if (currentHouseList.isEmpty()) {
+                textViewNoResults.setText("Nenhuma casa encontrada para a localidade pesquisada.");
+                textViewNoResults.setVisibility(View.VISIBLE);
+            } else {
+                textViewNoResults.setVisibility(View.GONE);
+            }
         } else {
             if (textViewNoResults != null) {
                 textViewNoResults.setText("Nenhum critério de pesquisa fornecido.");
