@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="#C1FDB6"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="CozySpot"
+            app:title="@string/app_name"
             app:titleTextColor="#000000" />
 
         <LinearLayout
@@ -35,7 +35,7 @@
                 android:id="@+id/textViewNoBookings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nenhuma reserva encontrada."
+                android:text="@string/no_booking_found"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="gone"

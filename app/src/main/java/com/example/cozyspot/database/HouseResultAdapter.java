@@ -49,8 +49,19 @@ public class HouseResultAdapter extends RecyclerView.Adapter<HouseResultAdapter.
         House house = houseList.get(position);
         holder.textViewTitle.setText(house.getTitle());
         holder.textViewLocation.setText(house.getLocation());
-        holder.textViewDetails.setText("Hóspedes: " + house.getGuests());
-        holder.textViewPrice.setText(String.format(Locale.getDefault(), "Preço por noite: %.2f€", house.getPricePerNight()));
+        
+        AppDatabase db = AppDatabase.getInstance(context);
+        // Buscar nome do host pelo ownerId
+        holder.textViewDetails.setText(context.getString(R.string.host) + " ...");
+        new Thread(() -> {
+            AppDatabase db1 = AppDatabase.getInstance(context);
+            com.example.cozyspot.database.Classes.User host = db1.userDao().findById(house.getOwnerId());
+            String hostName = host != null ? host.getUserName() : "";
+            new Handler(Looper.getMainLooper()).post(() -> {
+                holder.textViewDetails.setText(context.getString(R.string.host) + " " + hostName);
+            });
+        }).start();
+        holder.textViewPrice.setText(context.getString(R.string.price_per_night) + ": " + String.format(Locale.getDefault(), "%.2f€", house.getPricePerNight()));
         Glide.with(context)
                 .load(house.getImageUrl())
                 .placeholder(R.drawable.ic_launcher_background)
@@ -66,14 +77,13 @@ public class HouseResultAdapter extends RecyclerView.Adapter<HouseResultAdapter.
             context.startActivity(intent);
         });
 
-        holder.textViewRating.setText("Avaliação: .../5");
+        holder.textViewRating.setText(context.getString(R.string.rating_0_5));
         new Thread(() -> {
-            AppDatabase db = AppDatabase.getInstance(context);
             ReviewDao reviewDao = db.reviewDao();
             float avgRating = reviewDao.getAverageRatingForHouse(house.getId());
             int ratingInt = Math.round(avgRating);
             new Handler(Looper.getMainLooper()).post(() -> {
-                holder.textViewRating.setText("Avaliação: " + ratingInt + "/5");
+                holder.textViewRating.setText(context.getString(R.string.rating) + ": " + ratingInt + "/5");
             });
         }).start();
     }

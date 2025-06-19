@@ -26,7 +26,7 @@
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome da casa"
+            android:text="@string/house_name"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="#222" />
@@ -35,7 +35,7 @@
             android:id="@+id/textViewLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Localização"
+            android:text="@string/location"
             android:textSize="15sp"
             android:textColor="#444" />
 
@@ -43,7 +43,7 @@
             android:id="@+id/textViewDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data | Hóspedes"
+            android:text="@string/date_guests"
             android:textSize="14sp"
             android:textColor="#666" />
 
@@ -51,19 +51,17 @@
             android:id="@+id/textViewPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Preço"
+            android:text="@string/price"
             android:textSize="15sp"
             android:textColor="#008000"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewRating"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Avaliação: 0/5"
-            android:textSize="18sp"
-            android:textColor="#FFA000"
-            android:layout_marginBottom="6dp"
-            android:layout_gravity="start" />
+            android:text="@string/rating_0_5"
+            android:textSize="14sp"
+            android:textColor="#666" />
     </LinearLayout>
 </LinearLayout>

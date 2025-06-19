@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="#C1FDB6"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="CozySpot"
+            app:title="@string/app_name"
             app:titleTextColor="#000000" />
 
         <ImageView
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Nome do usuário"
+            android:text="@string/user_name"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Email"
+            android:text="@string/email"
             android:textAlignment="center"
             android:textSize="16sp" />
 
@@ -58,7 +58,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Tipo de usuário"
+            android:text="@string/user_type"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewUserHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/history"
             android:textAlignment="center"
             android:textSize="16sp" />
 

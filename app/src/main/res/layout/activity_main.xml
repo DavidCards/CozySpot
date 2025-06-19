@@ -18,7 +18,7 @@
             android:layout_marginStart="65dp"
             android:layout_marginTop="130dp"
             android:ems="10"
-            android:hint="Localização"
+            android:hint="@string/location"
             android:inputType="text"
             android:textAlignment="center" />
 
@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:background="@android:drawable/edit_text"
                 android:focusable="false"
-                android:hint="Data início"
+                android:hint="@string/start_date"
                 android:inputType="none"
                 android:padding="8dp"
                 android:textAlignment="center"
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="até"
+                android:text="@string/until"
                 android:textSize="18sp" />
 
             <EditText
@@ -57,7 +57,7 @@
                 android:layout_weight="1"
                 android:background="@android:drawable/edit_text"
                 android:focusable="false"
-                android:hint="Data fim"
+                android:hint="@string/end_date"
                 android:inputType="none"
                 android:padding="8dp"
                 android:textAlignment="center"
@@ -71,7 +71,7 @@
             android:layout_marginStart="65dp"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="Hóspedes"
+            android:hint="@string/guests"
             android:inputType="number"
             android:textAlignment="center" />
 
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
             android:layout_marginTop="20dp"
-            android:text="Pesquisar"
+            android:text="@string/search"
             android:textColor="#040404" />
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginTop="30dp"
-            android:text="Sugestões"
+            android:text="@string/suggestions"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -98,10 +98,9 @@
             android:id="@+id/textViewMelhores"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:layout_marginTop="16dp"
-            android:text="Top 10 melhores casas"
+            android:text="@string/top_10_houses"
             android:textAlignment="center"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ScrollView

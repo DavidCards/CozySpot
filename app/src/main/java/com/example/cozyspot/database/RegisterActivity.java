@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString().trim();
                 String password = editTextPassword.getText().toString().trim();
                 if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(RegisterActivity.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 executor.execute(() -> {
@@ -54,14 +54,14 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     if (existing != null) {
                         runOnUiThread(() -> {
-                            Toast.makeText(RegisterActivity.this, "Email já registado", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, getString(R.string.email_already_registered), Toast.LENGTH_SHORT).show();
                         });
                         return;
                     }
                     User user = new User(username, email, password, "guest", "default_avatar_user.jpg");
                     db.userDao().insert(user);
                     runOnUiThread(() -> {
-                        Toast.makeText(RegisterActivity.this, "Registo efetuado com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, getString(R.string.registration_successful), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();

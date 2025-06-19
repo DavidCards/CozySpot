@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CozySpot</string>
+    <string name="host">Anfitrião:</string>
+    <string name="ask_host">Pergunte ao anfitrião:</string>
+    <string name="no_account_register">Ainda não tem conta? Cadastre-se agora!</string>
+    <string name="location_permission_denied">Permissão de localização negada</string>
+    <string name="fill_all_fields">Preencha todos os campos</string>
+    <string name="registration_successful">Registo efetuado com sucesso!</string>
+    <string name="email_already_registered">Email já registado</string>
+    <string name="login_successful">Login bem-sucedido!</string>
+    <string name="invalid_email_or_password">Email ou senha inválidos</string>
+    <string name="database_preparation">Aguarde um momento... preparando a base de dados</string>
+    <string name="message_sent">Mensagem enviada!</string>
+    <string name="select_recipient">Selecione o destinatário</string>
+    <string name="write_message">Escreva uma mensagem</string>
+    <string name="search_criteria_missing">Nenhum critério de pesquisa fornecido</string>
+    <string name="location_required">Localização é obrigatória</string>
+    <string name="question_sent">Dúvida enviada ao host!</string>
+    <string name="unable_to_get_location">Não foi possível obter a localização</string>
+    <string name="layout_view_error">Erro: view não encontrada no layout</string>
+</resources>

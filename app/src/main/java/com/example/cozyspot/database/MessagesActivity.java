@@ -104,7 +104,7 @@ public class MessagesActivity extends AppCompatActivity {
         buttonSendReply.setOnClickListener(v -> {
             String reply = editTextReply.getText().toString().trim();
             if (reply.isEmpty()) {
-                Toast.makeText(this, "Escreva uma mensagem.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.write_message), Toast.LENGTH_SHORT).show();
                 return;
             }
             int userIdReply = getIntent().getIntExtra("USER_ID", -1);
@@ -114,7 +114,7 @@ public class MessagesActivity extends AppCompatActivity {
             } else {
                 int pos = spinnerUsers.getSelectedItemPosition();
                 if (pos < 0 || pos >= userIdsForSpinner.size()) {
-                    Toast.makeText(this, "Selecione o destinatário.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.select_recipient), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 receiverId = userIdsForSpinner.get(pos);
@@ -133,7 +133,7 @@ public class MessagesActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     editTextReply.setText("");
                     selectedMessageSenderId = -1;
-                    Toast.makeText(this, "Mensagem enviada!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.message_sent), Toast.LENGTH_SHORT).show();
                     MessagesSimpleAdapter adapter = new MessagesSimpleAdapter(MessagesActivity.this, messagesToShow, userIdReply, userNamesCache);
                     adapter.setOnMessageClickListener(message -> {
                         selectedMessageSenderId = message.getSenderId();

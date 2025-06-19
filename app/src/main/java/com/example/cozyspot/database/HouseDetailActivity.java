@@ -109,12 +109,12 @@ public class HouseDetailActivity extends AppCompatActivity {
                 ImageView imageView = content.findViewById(R.id.imageView7);
                 TextView title = content.findViewById(R.id.textView18);
                 TextView location = content.findViewById(R.id.textView21);
-                TextView description = content.findViewById(R.id.textView23);
-                TextView price = content.findViewById(R.id.textView22);
+                TextView description = content.findViewById(R.id.textViewDescriptionLabel);
+                TextView price = content.findViewById(R.id.textViewPrice);
                 ImageButton buttonFavorite = content.findViewById(R.id.buttonFavorite);
                 RatingBar ratingBar = content.findViewById(R.id.ratingBar);
-                EditText editTextDuvida = content.findViewById(R.id.editTextText3);
-                Button buttonEnviar = content.findViewById(R.id.button3);
+                EditText editTextDuvida = content.findViewById(R.id.editTextQuestion);
+                Button buttonEnviar = content.findViewById(R.id.buttonSend);
                 Button buttonBook = content.findViewById(R.id.buttonBook);
                 EditText editTextStartDate = content.findViewById(R.id.editTextStartDate);
                 EditText editTextEndDate = content.findViewById(R.id.editTextEndDate);
@@ -123,7 +123,7 @@ public class HouseDetailActivity extends AppCompatActivity {
                 TextView hostName = content.findViewById(R.id.textViewHostName);
 
                 if (imageView == null || title == null || location == null || description == null || price == null || buttonFavorite == null || ratingBar == null || editTextDuvida == null || buttonEnviar == null || buttonBook == null || editTextStartDate == null || editTextEndDate == null || mapView == null || centerLocationButton == null) {
-                    Toast.makeText(HouseDetailActivity.this, "Erro: view não encontrada no layout.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HouseDetailActivity.this, getString(R.string.layout_view_error), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -205,7 +205,7 @@ public class HouseDetailActivity extends AppCompatActivity {
                 executor.execute(() -> {
                     com.example.cozyspot.database.Classes.User host = db.userDao().findById(house.getOwnerId());
                     String hostDisplay = host != null ? host.getUserName() : "(desconhecido)";
-                    runOnUiThread(() -> hostName.setText("Host: " + hostDisplay));
+                    runOnUiThread(() -> hostName.setText(getString(R.string.host) + " " + hostDisplay));
                 });
 
                 String imageUrl = house.getImageUrl();

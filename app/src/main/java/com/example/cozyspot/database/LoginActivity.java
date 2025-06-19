@@ -40,10 +40,15 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.button10);
 
         TextView textViewRegister = findViewById(R.id.textViewRegister);
-        String fullText = "Ainda não está registado no CozySpot? Registe-se já :)";
+        String fullText = getString(R.string.no_account_register);
         SpannableString spannableString = new SpannableString(fullText);
         int start = fullText.indexOf("Registe-se");
         int end = start + "Registe-se".length();
+        if (start == -1) {
+            // fallback para "Register now" se não encontrar "Registe-se"
+            start = fullText.indexOf("Register now");
+            end = start + "Register now".length();
+        }
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
@@ -51,7 +56,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         };
-        spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (start != -1 && end > start) {
+            spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
         textViewRegister.setText(spannableString);
         textViewRegister.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -78,14 +85,14 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             if (firstLoginAttempt) {
                                 firstLoginAttempt = false;
-                                Toast.makeText(LoginActivity.this, "Aguarde um momento... preparando a base de dados", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, getString(R.string.database_preparation), Toast.LENGTH_SHORT).show();
                                 buttonLogin.setEnabled(false);
                                 buttonLogin.postDelayed(() -> {
                                     buttonLogin.setEnabled(true);
                                     buttonLogin.performClick();
                                 }, 2000);
                             } else {
-                                Toast.makeText(LoginActivity.this, "Email ou senha inválidos", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, getString(R.string.invalid_email_or_password), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

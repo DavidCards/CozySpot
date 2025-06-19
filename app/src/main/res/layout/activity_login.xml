@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Entrar"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="24sp"
@@ -36,7 +36,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:textAlignment="viewStart" />
 
@@ -48,7 +48,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
             android:ems="10"
-            android:hint="Senha"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <Button
@@ -60,7 +60,7 @@
             android:layout_marginEnd="30dp"
             android:backgroundTint="#C1FDB6"
             android:textColor="#000000"
-            android:text="Entrar" />
+            android:text="@string/login_button" />
 
         <TextView
             android:id="@+id/textViewRegister"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Ainda não tem conta? Cadastre-se agora :)"
+            android:text="@string/no_account_register"
             android:textAlignment="center"
             android:textColor="#00ACFF"
             android:textSize="14sp" />

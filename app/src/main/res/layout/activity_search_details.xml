@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="#C1FDB6"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="CozySpot"
+            app:title="@string/app_name"
             app:titleTextColor="#000000" />
 
         <ScrollView
@@ -41,7 +41,7 @@
                     android:layout_gravity="end"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_heart_outline"
-                    android:contentDescription="Favoritar casa" />
+                    android:contentDescription="@string/favorite_house" />
 
                 <RatingBar
                     android:id="@+id/ratingBar"
@@ -77,7 +77,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="@android:color/transparent"
-                        android:contentDescription="Centralizar no mapa"
+                        android:contentDescription="@string/center_map"
                         android:padding="12dp"
                         android:src="@drawable/baseline_my_location_24" />
                 </androidx.cardview.widget.CardView>
@@ -91,7 +91,7 @@
                     android:layout_marginRight="20dp"
                     android:background="#14000000"
                     android:paddingTop="12dp"
-                    android:text="Localização"
+                    android:text="@string/location"
                     android:textAlignment="center"
                     android:textSize="18dp" />
 
@@ -100,10 +100,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:background="#14000000"
                     android:paddingTop="12dp"
-                    android:text="Datas"
+                    android:text="@string/dates"
                     android:textAlignment="center"
                     android:textSize="18dp" />
 
@@ -118,48 +119,47 @@
                     <EditText
                         android:id="@+id/editTextStartDate"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:hint="Data início"
-                        android:focusable="false"
-                        android:inputType="none"
                         android:background="@android:drawable/edit_text"
+                        android:focusable="false"
+                        android:hint="@string/start_date"
+                        android:inputType="none"
                         android:padding="8dp"
-                        android:textSize="18sp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:text="até"
-                        android:textSize="18sp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:gravity="center_vertical|center_horizontal" />
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/until"
+                        android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/editTextEndDate"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:hint="Data fim"
-                        android:focusable="false"
-                        android:inputType="none"
                         android:background="@android:drawable/edit_text"
+                        android:focusable="false"
+                        android:hint="@string/end_date"
+                        android:inputType="none"
                         android:padding="8dp"
-                        android:textSize="18sp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/textViewLocation"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:background="#14000000"
                     android:paddingTop="12dp"
-                    android:text="Localização"
+                    android:text="@string/location"
                     android:textAlignment="center"
                     android:textSize="18dp" />
 
@@ -186,55 +186,51 @@
                     android:contentDescription="Imagem da casa" />
 
                 <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="match_parent"
-                    android:layout_height="142dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="Descrição"
-                    android:textAlignment="textStart"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="match_parent"
-                    android:layout_height="39dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#C1FDB6"
-                    android:paddingTop="8dp"
-                    android:text="Faça uma pergunta ao anfitrião:"
-                    android:textAlignment="center"
-                    android:textSize="18dp" />
-
-                <EditText
-                    android:id="@+id/editTextText3"
-                    android:layout_width="match_parent"
-                    android:layout_height="101dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="20dp"
-                    android:ems="10"
-                    android:hint="Digite sua dúvida"
-                    android:inputType="text" />
-
-                <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/textViewPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:text="Enviar" />
+                    android:layout_marginTop="8dp"
+                    android:text="@string/price_per_night"
+                    android:textAlignment="center"
+                    android:textColor="#444"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textViewDescriptionLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/textViewAskHost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ask_host"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
+                <EditText
+                    android:id="@+id/editTextQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/type_question"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/buttonSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send" />
 
                 <Button
                     android:id="@+id/buttonBook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Reservar" />
+                    android:text="@string/book" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

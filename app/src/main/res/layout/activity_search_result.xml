@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="#C1FDB6"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="CozySpot"
+            app:title="@string/app_name"
             app:titleTextColor="#000000" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_marginTop="20dp"
             android:background="#EEEEEE"
             android:gravity="center_vertical|center_horizontal"
-            android:hint="Localização"
+            android:hint="@string/location"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -44,7 +44,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#EEEEEE"
             android:gravity="center_vertical|center_horizontal"
-            android:hint="Datas"
+            android:hint="@string/dates"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -55,7 +55,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#EEEEEE"
             android:gravity="center_vertical|center_horizontal"
-            android:hint="Hóspedes"
+            android:hint="@string/guests"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -74,7 +74,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#C1FDB6"
                 android:textColor="#000000"
-                android:text="Preço por noite" />
+                android:text="@string/price_per_night" />
 
             <Button
                 android:id="@+id/button9"
@@ -85,7 +85,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#C1FDB6"
                 android:textColor="#000000"
-                android:text="Ranking" />
+                android:text="@string/rating" />
         </LinearLayout>
 
         <TextView
